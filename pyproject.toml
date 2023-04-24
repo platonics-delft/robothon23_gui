@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "robothon-gui"
+version = "0.1.0"
+description = "Graphical user interface for the robothon 2023 challenge"
+authors = ["Chadi Salmi <c.salmi@tudelft.nl>"]
+readme = "README.md"
+packages = [{include = "robothon_gui"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+flask = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
