@@ -1,7 +1,4 @@
 const api_url = 'http://localhost:5000';
-const button1 = document.getElementById('load_tmuxp');
-const button2 = document.getElementById('kill_tmuxp');
-const button3 = document.getElementById('run_bt');
 const button_template = document.getElementById('record_template');
 const template_name = document.getElementById('template_name');
 
@@ -45,44 +42,26 @@ button_behavior.addEventListener('click', async _ => {
 });
 
 
-button1.addEventListener('click', async _ => {
-  try {     
-    const response = await fetch(`${api_url}/load_tmuxp`, {
-      method: 'post',
-      body: {
-        // Your body
+var skills = document.querySelectorAll(".skills");
+var skill_order = [];
+
+skills.forEach(function(checkbox) {
+  checkbox.addEventListener("change", function() {
+    if (this.checked) {
+      var indicator = document.createElement("span");
+      indicator.innerHTML = (skill_order.length + 1);
+      indicator.className = "ml-2 text-gray-700 bg-gray-400 rounded-full h-6 w-6 flex items-center justify-center";
+      this.parentElement.lastElementChild.appendChild(indicator);
+      skill_order.push(this.id);
+    } else {
+      var index = skill_order.indexOf(this.id);
+      if (index !== -1) {
+        skill_order.splice(index, 1);
       }
-    });
-    console.log('Completed!', response);
-  } catch(err) {
-    console.error(`Error: ${err}`);
-  }
+      var label = this.parentElement.lastElementChild;
+      label.removeChild(label.firstElementChild)
+    }
+    console.log(skill_order);
+  });
 });
 
-button2.addEventListener('click', async _ => {
-  try {     
-    const response = await fetch(`${api_url}/kill_tmuxp`, {
-      method: 'post',
-      body: {
-        // Your body
-      }
-    });
-    console.log('Completed!', response);
-  } catch(err) {
-    console.error(`Error: ${err}`);
-  }
-});
-
-button3.addEventListener('click', async _ => {
-  try {     
-    const response = await fetch(`${api_url}/run_bt`, {
-      method: 'post',
-      body: {
-        // Your body
-      }
-    });
-    console.log('Completed!', await response.json().data);
-  } catch(err) {
-    console.error(`Error: ${err}`);
-  }
-});
