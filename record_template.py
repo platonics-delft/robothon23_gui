@@ -33,7 +33,8 @@ def crop_image(event, x, y, flags, param):
 if __name__ == "__main__":
     global save_dir, params
     params = dict()
-    save_dir = f"templates/{sys.argv[1]}"
+    #save_dir = f"templates/{sys.argv[1]}"
+    save_dir = f"/home/platonics/Documents/robothon/src/franka_ros/robotthon_23_platonics/manipulation_tasks_panda/box_localization/cfg/{sys.argv[1]}"
     params['template_path'] = f"{save_dir}/full_image.png"
     os.mkdir(save_dir)
     rospy.init_node('test')
